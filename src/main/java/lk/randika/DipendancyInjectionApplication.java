@@ -1,12 +1,18 @@
 package lk.randika;
 
+import lk.randika.controllers.GreetingController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class DipendancyInjectionApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DipendancyInjectionApplication.class, args);
+
+		ApplicationContext context = SpringApplication.run(DipendancyInjectionApplication.class, args);
+
+		GreetingController greetingController = (GreetingController)context.getBean("greetingController");
+		greetingController.sayHello();
 	}
 }
