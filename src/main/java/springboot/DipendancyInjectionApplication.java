@@ -1,11 +1,13 @@
-package lk.randika;
+package springboot;
 
 import lk.randika.controllers.GreetingController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan("lk.randika")
 public class DipendancyInjectionApplication {
 
 	public static void main(String[] args) {
