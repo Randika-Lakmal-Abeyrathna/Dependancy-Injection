@@ -1,5 +1,7 @@
 package lk.randika.config;
 
+import lk.randika.services.HelloWorldFactory;
+import lk.randika.services.HelloWorldService;
 import lk.randika.services.HelloWorldServiceEnglishImpl;
 import lk.randika.services.HelloWorldServiceSpanishImpl;
 import org.springframework.context.annotation.Bean;
@@ -13,14 +15,19 @@ import org.springframework.context.annotation.Profile;
 public class HelloConfig {
 
     @Bean
+    public HelloWorldFactory helloWorldFactory(){
+        return new HelloWorldFactory();
+    }
+
+    @Bean
     @Profile("en")
-    public HelloWorldServiceEnglishImpl helloWorldServiceEnglishImpl(){
-        return new HelloWorldServiceEnglishImpl();
+    public HelloWorldService helloWorldServiceEnglishImpl(HelloWorldFactory factory){
+        return factory.createHelloWorldService("en");
     }
 
     @Bean
     @Profile("sp")
-    public HelloWorldServiceSpanishImpl helloWorldServiceSpanishImpl(){
-        return new HelloWorldServiceSpanishImpl();
+    public HelloWorldService helloWorldServiceSpanishImpl(HelloWorldFactory factory){
+        return factory.createHelloWorldService("sp");
     }
 }
